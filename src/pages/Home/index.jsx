@@ -1,4 +1,4 @@
-import MovieList from "../../components/MovieList.jsx";
+import MovieList from "../../components/movies/MovieList.jsx";
 
 function index() {
   return (
