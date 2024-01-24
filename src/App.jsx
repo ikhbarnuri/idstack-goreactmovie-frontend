@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// third party
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+
+// internal source
+import Menu from "./components/Menu.jsx";
+import Home from "./pages/Home/index.jsx";
+import Movies from "./pages/Movies/index.jsx";
+import Genres from "./pages/Genres/index.jsx";
+import Admin from "./pages/Admin/index.jsx";
+
+// style
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Router>
+            <div className={"container"}>
+                <div className="row">
+                    <h1 className="mt-3">
+                        Go React Movie Project!
+                    </h1>
+                    <hr className="mb-3"/>
+                </div>
+                <div className="row">
+                    <div className="col-2">
+                        <Menu/>
+                    </div>
+                    <div className="col-10">
+                        <Routes>
+                            <Route path={"/"} element={<Home/>}/>
+                            <Route path={"/movies"} element={<Movies/>}/>
+                            <Route path={"/genres"} element={<Genres/>}/>
+                            <Route path={"/admin"} element={<Admin/>}/>
+                        </Routes>
+                    </div>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;
