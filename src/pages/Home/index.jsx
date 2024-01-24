@@ -1,11 +1,11 @@
 import MovieList from "../../components/MovieList.jsx";
 
 function index() {
-    return (
-        <>
-            <MovieList/>
-        </>
-    );
+  return (
+    <>
+      <MovieList />
+    </>
+  );
 }
 
 export default index;

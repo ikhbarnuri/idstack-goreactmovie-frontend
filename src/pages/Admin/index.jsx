@@ -1,7 +1,5 @@
 function index() {
-    return (
-        <div>Admin</div>
-    );
+  return <div>Admin</div>;
 }
 
 export default index;
