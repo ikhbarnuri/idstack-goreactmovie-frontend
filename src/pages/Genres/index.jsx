@@ -1,5 +1,11 @@
+import GenreList from "../../components/GenreList.jsx";
+
 function index() {
-  return <div>Genres</div>;
+  return (
+    <>
+      <GenreList />
+    </>
+  );
 }
 
 export default index;
