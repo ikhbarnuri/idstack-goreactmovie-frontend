@@ -1,4 +1,4 @@
-import GenreList from "../../components/GenreList.jsx";
+import GenreList from '../../components/GenreList.jsx';
 
 function index() {
   return (

@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function GenreList() {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     setGenres([
-      { id: 1, name: "Action" },
-      { id: 2, name: "Comedy" },
-      { id: 3, name: "Crime" },
+      { id: 1, name: 'Action' },
+      { id: 2, name: 'Comedy' },
+      { id: 3, name: 'Crime' },
     ]);
   }, []);
 
