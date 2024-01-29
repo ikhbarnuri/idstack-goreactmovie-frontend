@@ -5,12 +5,17 @@ import axios from 'axios';
 function MovieList() {
   const [movies, setMovies] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
-      let movies = await axios(`http://localhost:4000/movies`);
-      await setMovies(movies.data.movies);
-      setLoaded(true);
+      try {
+        let movies = await axios(`http://localhost:4000/movies`);
+        await setMovies(movies.data.movies);
+        setLoaded(true);
+      } catch (e) {
+        setErrorMessage(e.response.data);
+      }
     };
     fetchMovies();
   }, []);
@@ -18,9 +23,21 @@ function MovieList() {
   return (
     <>
       {!loaded ? (
-        <div className="row">
-          <p>Loading...</p>
-        </div>
+        (() => {
+          if (errorMessage) {
+            return (
+              <div className="row">
+                <p>Oops... {errorMessage}</p>
+              </div>
+            );
+          } else {
+            return (
+              <div className="row">
+                <p>Loading...</p>
+              </div>
+            );
+          }
+        })()
       ) : (
         <div className="row">
           {movies.map((movie, index) => (
@@ -28,7 +45,7 @@ function MovieList() {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <p className="card-text">{movie.description}</p>
                   <Link to={`/movies/${movie.id}`} className="btn btn-primary">
                     Go somewhere
                   </Link>
