@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -48,7 +48,10 @@ function ShowMovie() {
             <small>Rating: {movie.mppaa_rating}</small>
           </div>
           <div className="float-end">
-            <span className="badge bg-secondary me-1">Action</span>
+            {Object.entries(movie.genres).map((genre, index) => {
+              console.log(genre);
+              return <Link className={'badge bg-secondary'} key={index} to={''} >{genre[1]}</Link>
+            })}
           </div>
           <div className="clearfix"></div>
           <hr />
