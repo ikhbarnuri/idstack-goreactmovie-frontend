@@ -1,33 +1,44 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setMovies([
-      { id: 1, title: 'Spongebob Squarepants', runTime: 145 },
-      { id: 2, title: 'Ogry', runTime: 145 },
-      { id: 3, title: 'Chalk Zone', runTime: 145 },
-    ]);
+    const fetchMovies = async () => {
+      let movies = await axios(`http://localhost:4000/movies`);
+      await setMovies(movies.data.movies);
+      setLoaded(true);
+    };
+    fetchMovies();
   }, []);
 
   return (
-    <div className="row">
-      {movies.map((movie, index) => (
-        <div key={index} className="col-sm-4 mb-2">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{movie.title}</h5>
-              <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <Link to={`/movies/${movie.id}`} className="btn btn-primary">
-                Go somewhere
-              </Link>
-            </div>
-          </div>
+    <>
+      {!loaded ? (
+        <div className="row">
+          <p>Loading...</p>
         </div>
-      ))}
-    </div>
+      ) : (
+        <div className="row">
+          {movies.map((movie, index) => (
+            <div key={index} className="col-sm-4 mb-2">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{movie.title}</h5>
+                  <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <Link to={`/movies/${movie.id}`} className="btn btn-primary">
+                    Go somewhere
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
