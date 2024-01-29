@@ -7,6 +7,8 @@ import Home from './pages/Home/index.jsx';
 import Movies from './pages/Movies/index.jsx';
 import Genres from './pages/Genres/index.jsx';
 import Admin from './pages/Admin/index.jsx';
+import MovieDetail from './components/movies/MovieDetail.jsx';
+import ShowMovie from './pages/Movies/Show.jsx';
 
 // style
 import './App.css';
@@ -26,6 +28,7 @@ function App() {
           <div className="col-10">
             <Routes>
               <Route path={'/'} element={<Home />} />
+              <Route exact path={'/movies/:id'} element={<ShowMovie />} />
               <Route path={'/movies'} element={<Movies />} />
               <Route path={'/genres'} element={<Genres />} />
               <Route path={'/admin'} element={<Admin />} />

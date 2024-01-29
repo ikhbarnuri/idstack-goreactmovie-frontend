@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -19,9 +20,9 @@ function MovieList() {
             <div className="card-body">
               <h5 className="card-title">{movie.title}</h5>
               <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" className="btn btn-primary">
+              <Link to={`/movies/${movie.id}`} className="btn btn-primary">
                 Go somewhere
-              </a>
+              </Link>
             </div>
           </div>
         </div>
