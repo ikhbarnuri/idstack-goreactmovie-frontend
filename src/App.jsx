@@ -35,6 +35,7 @@ function App() {
               <Route exact path={'/genres/:id/movies'} element={<ShowMoviesGenre />} />
               <Route path={'/genres'} element={<Genres />} />
               <Route exact path={'/admin/movies/create'} element={<MovieForm />} />
+              <Route exact path={'/admin/movies/:id/edit'} element={<MovieForm />} />
               <Route path={'/admin'} element={<Admin />} />
             </Routes>
           </div>
