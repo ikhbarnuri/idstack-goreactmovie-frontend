@@ -45,7 +45,7 @@ function GenreList() {
             <div key={index} className="col-sm-2 mb-2">
               <div className="card">
                 <div className="card-body text-center">
-                  <Link to={`/genres/${genre.id}`}>{genre.genre_name}</Link>
+                  <Link to={`/genres/${genre.id}/movies`}>{genre.genre_name}</Link>
                 </div>
               </div>
             </div>
