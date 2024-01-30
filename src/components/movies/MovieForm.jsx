@@ -12,6 +12,9 @@ function MovieForm() {
    const fetchMovie = async (id) => {
       try {
          const result = await axios(`http://localhost:4000/movies/${id}`);
+         result.data.movie.id = result.data.movie.id.toString();
+         result.data.movie.runtime = result.data.movie.runtime.toString();
+         result.data.movie.rating = result.data.movie.rating.toString();
          result.data.movie.release_date = new Date(result.data.movie.release_date).toISOString().split('T')[0];
          fields.forEach((field) => setValue(field, result.data.movie[field]));
       } catch (e) {
@@ -26,7 +29,11 @@ function MovieForm() {
    }, [isAddMode]);
 
    const onSubmit = async (data) => {
-      const result = await axios.post('http://localhost:4000/admin/movies/add', JSON.stringify(data));
+      if (isAddMode) {
+         const result = await axios.post('http://localhost:4000/admin/movies/add', JSON.stringify(data));
+      } else {
+         const result = await axios.post('http://localhost:4000/admin/movies/edit', JSON.stringify(data));
+      }
    };
 
    return (
