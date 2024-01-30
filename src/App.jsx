@@ -13,6 +13,7 @@ import ShowMovie from './pages/Movies/Show.jsx';
 // style
 import './App.css';
 import ShowMoviesGenre from './pages/Genres/Show.jsx';
+import MovieForm from './components/movies/MovieForm.jsx';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path={'/movies'} element={<Movies />} />
               <Route exact path={'/genres/:id/movies'} element={<ShowMoviesGenre />} />
               <Route path={'/genres'} element={<Genres />} />
+              <Route exact path={'/admin/movies/create'} element={<MovieForm />} />
               <Route path={'/admin'} element={<Admin />} />
             </Routes>
           </div>
