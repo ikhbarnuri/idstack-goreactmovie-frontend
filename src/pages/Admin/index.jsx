@@ -1,5 +1,7 @@
+import MovieTable from '../../components/movies/MovieTable.jsx';
+
 function index() {
-  return <div>Admin</div>;
+  return <MovieTable />;
 }
 
 export default index;
