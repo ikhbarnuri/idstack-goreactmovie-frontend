@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function MovieForm() {
    const { register, handleSubmit, setValue } = useForm();
 
-   const onSubmit = (data) => {
-      console.log(data);
+   const onSubmit = async (data) => {
+      const result = await axios.post('http://localhost:4000/admin/movies/add', JSON.stringify(data));
+      console.log(result.data);
    };
 
    return (
