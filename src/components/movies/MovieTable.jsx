@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { json, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function MovieTable() {
@@ -19,6 +19,13 @@ function MovieTable() {
       };
       fetchMovies();
    }, []);
+
+   const handleDeleteMovie = async (id) => {
+      const payload = {
+         id: id.toString(),
+      };
+      await axios.post('http://localhost:4000/admin/movies/delete', JSON.stringify(payload));
+   };
 
    return (
       <>
@@ -81,7 +88,13 @@ function MovieTable() {
                                              </span>
                                           </li>
                                           <li>
-                                             <span className={'dropdown-item'}>Delete</span>
+                                             <span
+                                                className={'dropdown-item'}
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={() => handleDeleteMovie(movie.id)}
+                                             >
+                                                Delete
+                                             </span>
                                           </li>
                                        </ul>
                                     </div>
